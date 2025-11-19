@@ -21,6 +21,7 @@ export const FindMovie: React.FC = () => {
   if (movieData) {
     const { Title, Plot, Poster, imdbID } = movieData;
     let finalPoster = Poster;
+
     if (Poster === 'N/A') {
       finalPoster = 'https://via.placeholder.com/360x270.png?text=no%20preview';
     }

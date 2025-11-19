@@ -56,15 +56,16 @@ export const MovieProvider = ({ children }: { children: React.ReactNode }) => {
   const submitSearch = () => {
     setIsLoading(true);
     getMovie(query)
-    .then((data: MovieData | ResponseError) => {
-      if ((data as ResponseError).Response === 'False') {
+      .then((data: MovieData | ResponseError) => {
+        if ((data as ResponseError).Response === 'False') {
           throw new Error((data as ResponseError).Error);
         }
+
         setMovieData(data as MovieData);
         setMovieIsFound(true);
-      }).catch(() => {
+      })
+      .catch(() => {
         setHasError(true);
-        setIsLoading(false);
       })
       .finally(() => {
         setIsLoading(false);
@@ -77,6 +78,7 @@ export const MovieProvider = ({ children }: { children: React.ReactNode }) => {
     if (!sameMovieFound) {
       setMovies([...movies, movie]);
     }
+
     setQuery('');
     setMovieIsFound(false);
     setMovieData(null);
